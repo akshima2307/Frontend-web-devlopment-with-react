@@ -131,7 +131,7 @@ class Contact extends Component {
                                        placeholder="First Name"
                                        value={this.state.firstname}
                                        valid={errors.firstname === ''}
-                                       invalid={errors.firstname != ''}
+                                       invalid={errors.firstname !== ''}
                                        onChange={this.handleInputChange} onBlur={this.handleBLur('firstname')} />
                                     <FormFeedback>{errors.firstname}</FormFeedback>
                                </Col>
@@ -143,7 +143,7 @@ class Contact extends Component {
                                        placeholder="Last Name"
                                        value={this.state.lastname}
                                        valid={errors.lastname === ''}
-                                       invalid={errors.lastname != ''}
+                                       invalid={errors.lastname !== ''}
                                        onChange={this.handleInputChange} onBlur={this.handleBLur('lastname')} />
                                     <FormFeedback>{errors.lastname}</FormFeedback>
                                </Col>
@@ -155,7 +155,7 @@ class Contact extends Component {
                                        placeholder="Tel. number"
                                        value={this.state.telnum}
                                        valid={errors.telnum === ''}
-                                       invalid={errors.telnum != ''}
+                                       invalid={errors.telnum !== ''}
                                        onChange={this.handleInputChange} onBlur={this.handleBLur('telnum')} />
                                     <FormFeedback>{errors.telnum}</FormFeedback>
                                </Col>
@@ -166,7 +166,7 @@ class Contact extends Component {
                                    <Input type="email" id="email" name="email"
                                        placeholder="Email"
                                        valid={errors.email === ''}
-                                       invalid={errors.email != ''}
+                                       invalid={errors.email !== ''}
                                        value={this.state.email}
                                        onChange={this.handleInputChange} onBlur={this.handleBLur('email')} />
                                     <FormFeedback>{errors.telnum}</FormFeedback>
