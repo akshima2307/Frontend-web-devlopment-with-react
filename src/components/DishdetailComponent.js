@@ -4,7 +4,7 @@ Modal, ModalHeader,ModalBody, Row, Col, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 
-  function RenderComment({comments , dishId }){
+  function RenderComments({comments, addComment, dishId}){
     if (comments == null) {
       return(<div></div>);
     }
@@ -30,7 +30,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
         <ul className='list-unstyled'>
           {comm}
         </ul>
-        <CommentForm />
+        <CommentForm dishId={dishId} addComment={addComment} />
       </div>
     );
 
@@ -56,8 +56,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
     }
     handleSubmit(values) {
       this.toggleModal();
-      console.log('Current State is: ' + JSON.stringify(values));
-      alert('Current State is: ' + JSON.stringify(values));
+      this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     }
 
 
@@ -87,7 +86,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
               <Row className="form-group">
                 <Label htmlFor="name" md={12}>Your Name</Label>
                 <Col md={12}>
-                  <Control.text model=".name" name="name" placeholder="Your Name"
+                  <Control.text model=".author" name="author" placeholder="Your Name"
                       className="form-control"
                       validators={{
                            minLength: minLength(2), maxLength: maxLength(15)
@@ -95,7 +94,7 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
                        />
                   <Errors
                     className="text-danger"
-                    model=".name"
+                    model=".author"
                     show="touched"
                     messages={{
                       minLength: 'Must be greater than 2 characters',
@@ -166,7 +165,10 @@ import { Control, LocalForm, Errors } from 'react-redux-form';
           </div>
           <div className='row'>
             <RenderDish dish= {props.dish} />
-            <RenderComment comments ={props.comments} />
+            <RenderComments comments={props.comments}
+            addComment={props.addComment}
+            dishId={props.dish.id}
+            />
           </div>
       </div>
     )
