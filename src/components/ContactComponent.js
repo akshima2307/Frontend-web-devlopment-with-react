@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Breadcrumb, BreadcrumbItem,
             Button, Row, Col, Label } from 'reactstrap';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Form, Errors, action } from 'react-redux-form';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -22,23 +22,24 @@ class Contact extends Component {
     console.log('Current State is: ' + JSON.stringify(values));
     alert('Current State is: ' + JSON.stringify(values));
     // event.preventDefault();
+    this.props.resetFeedbackForm();
   }
 
 
   render(){
       return(
         <div className="container">
-            <div className="row">
-                <Breadcrumb>
+           <div className="row">
+               <Breadcrumb>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
                     <BreadcrumbItem active>Contact Us</BreadcrumbItem>
-                </Breadcrumb>
+               </Breadcrumb>
                 <div className="col-12">
                     <h3>Contact Us</h3>
                     <hr />
                 </div>
             </div>
-            <div className="row row-content">
+           <div className="row row-content">
                 <div className="col-12">
                 <h3>Location Information</h3>
                 </div>
@@ -70,7 +71,7 @@ class Contact extends Component {
                      <h3>Send us your Feedback</h3>
                   </div>
                   <div className="col-12 col-md-9">
-                  <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                  <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                       <Row className="form-group">
                              <Label htmlFor="firstname" md={2}>First Name</Label>
                              <Col md={10}>
@@ -193,7 +194,7 @@ class Contact extends Component {
                                 </Button>
                             </Col>
                         </Row>
-                    </LocalForm>
+                    </Form>
                   </div>
             </div>
       </div>
